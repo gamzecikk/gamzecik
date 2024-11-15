@@ -4,7 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sevgi Barı</title>
-    <link rel="icon" href="https://github.com/gamzecikk/gamzecikk.github.io/raw/main/20241115_230026_0000.png" type="image/png">
+
+    <!-- Open Graph Meta Etiketleri -->
+    <meta property="og:title" content="GAMZECİK" />
+    <meta property="og:description" content="❤️❄️🍓" />
+    <meta property="og:image" content="https://gamzecik.github.io/20241115_230026_0000.png" />
+    <meta property="og:url" content="https://gamzecikk.github.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
     <style>
         body {
             background-color: #000; /* Siyah arka plan */
@@ -71,7 +80,7 @@
         }
 
         .strawberry {
-            color: #ff4d4d;
+            color: #ff0000; /* Çilek kırmızı rengi */
         }
 
         @keyframes floatUp {
@@ -98,21 +107,21 @@
         const animationContainer = document.getElementById("animationContainer");
 
         loveButton.addEventListener("click", () => {
-            const randomChoice = Math.random(); // 3 seçenek için rastgele sayı
+            const randomNum = Math.random();
+            const isHeart = randomNum > 0.66;  // Kalp için 0.66'dan büyük, çilek için 0.33 - 0.66 arasında
+            const isStrawberry = randomNum > 0.33 && randomNum <= 0.66; // Çilek için 0.33-0.66 arası
 
-            let element;
-            if (randomChoice < 0.33) {
-                element = document.createElement("div");
+            const element = document.createElement("div");
+
+            if (isHeart) {
                 element.classList.add("heart");
-                element.textContent = "❤️";
-            } else if (randomChoice < 0.66) {
-                element = document.createElement("div");
-                element.classList.add("snowflake");
-                element.textContent = "❄️";
-            } else {
-                element = document.createElement("div");
+                element.textContent = "❤️"; // Kalp emojisi
+            } else if (isStrawberry) {
                 element.classList.add("strawberry");
-                element.textContent = "🍓";
+                element.textContent = "🍓"; // Çilek emojisi
+            } else {
+                element.classList.add("snowflake");
+                element.textContent = "❄️"; // Kar tanesi emojisi
             }
 
             const x = Math.random() * window.innerWidth;
