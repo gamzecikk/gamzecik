@@ -4,16 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sevgi Barı</title>
-
-    <!-- Open Graph Meta Etiketleri -->
-    <meta property="og:title" content="GAMZECİK" />
-    <meta property="og:description" content="❄️🍓❤️" />
-    <meta property="og:image" content="https://gamzecikk.github.io/Adsız%20tasarım_20241115_231702_0000.png" />
-    <meta property="og:url" content="https://gamzecikk.github.io" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-
     <style>
         body {
             background-color: #000; /* Siyah arka plan */
@@ -37,6 +27,12 @@
             color: #ff007f; /* Pembe renk */
             margin-bottom: 20px;
             font-weight: bold; /* Daha belirgin yazı */
+            animation: neonAnimation 2s infinite alternate;
+        }
+
+        @keyframes neonAnimation {
+            0% { text-shadow: 0 0 5px #ff007f, 0 0 10px #ff007f, 0 0 20px #ff007f; }
+            100% { text-shadow: 0 0 10px #ff66b2, 0 0 20px #ff66b2, 0 0 30px #ff66b2; }
         }
 
         button {
@@ -80,7 +76,7 @@
         }
 
         .strawberry {
-            color: #ff0000; /* Çilek kırmızı rengi */
+            color: #ff4500; /* Çilek rengi */
         }
 
         @keyframes floatUp {
@@ -93,6 +89,24 @@
                 opacity: 0;
             }
         }
+
+        /* Navigasyon düğmesi */
+        .nav-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #ff007f;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: #ff66b2;
+        }
     </style>
 </head>
 <body>
@@ -100,6 +114,8 @@
         <h1 class="neon-text">GAMZECİK</h1>
         <button id="loveButton">Bana Tıkla</button>
         <div id="animationContainer"></div>
+        <!-- Navigasyon Düğmesi -->
+        <a href="gamzeyi_motive_et.html" class="nav-button">Diğer Sayfa</a>
     </div>
 
     <script>
@@ -107,21 +123,170 @@
         const animationContainer = document.getElementById("animationContainer");
 
         loveButton.addEventListener("click", () => {
-            const randomNum = Math.random();
-            const isHeart = randomNum > 0.66;  // Kalp için 0.66'dan büyük, çilek için 0.33 - 0.66 arasında
-            const isStrawberry = randomNum > 0.33 && randomNum <= 0.66; // Çilek için 0.33-0.66 arası
-
+            const randomChoice = Math.random();
             const element = document.createElement("div");
 
-            if (isHeart) {
+            if (randomChoice < 0.33) {
                 element.classList.add("heart");
-                element.textContent = "❤️"; // Kalp emojisi
-            } else if (isStrawberry) {
-                element.classList.add("strawberry");
-                element.textContent = "🍓"; // Çilek emojisi
-            } else {
+                element.textContent = "❤️";
+            } else if (randomChoice < 0.66) {
                 element.classList.add("snowflake");
-                element.textContent = "❄️"; // Kar tanesi emojisi
+                element.textContent = "❄️";
+            } else {
+                element.classList.add("strawberry");
+                element.textContent = "🍓";
+            }
+
+            const x = Math.random() * window.innerWidth;
+            const y = window.innerHeight;
+            element.style.left = `${x}px`;
+            element.style.top = `${y}px`;
+
+            animationContainer.appendChild(element);
+
+            setTimeout(() => {
+                animationContainer.removeChild(element);
+            }, 2000);
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sevgi Barı</title>
+    <style>
+        body {
+            background-color: #000; /* Siyah arka plan */
+            color: #ff007f;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .neon-text {
+            font-size: 3em;
+            color: #ff007f; /* Pembe renk */
+            margin-bottom: 20px;
+            font-weight: bold; /* Daha belirgin yazı */
+            animation: neonAnimation 2s infinite alternate;
+        }
+
+        @keyframes neonAnimation {
+            0% { text-shadow: 0 0 5px #ff007f, 0 0 10px #ff007f, 0 0 20px #ff007f; }
+            100% { text-shadow: 0 0 10px #ff66b2, 0 0 20px #ff66b2, 0 0 30px #ff66b2; }
+        }
+
+        button {
+            background: #ff007f;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background: #ff66b2;
+        }
+
+        #animationContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart, .snowflake, .strawberry {
+            position: absolute;
+            font-size: 2em;
+            opacity: 0;
+            animation: floatUp 2s ease-in-out forwards;
+        }
+
+        .heart {
+            color: #ff007f;
+        }
+
+        .snowflake {
+            color: #fff;
+        }
+
+        .strawberry {
+            color: #ff4500; /* Çilek rengi */
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Navigasyon düğmesi */
+        .nav-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #ff007f;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: #ff66b2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="neon-text">GAMZECİK</h1>
+        <button id="loveButton">Bana Tıkla</button>
+        <div id="animationContainer"></div>
+        <!-- Navigasyon Düğmesi -->
+        <a href="gamzeyi_motive_et.html" class="nav-button">Diğer Sayfa</a>
+    </div>
+
+    <script>
+        const loveButton = document.getElementById("loveButton");
+        const animationContainer = document.getElementById("animationContainer");
+
+        loveButton.addEventListener("click", () => {
+            const randomChoice = Math.random();
+            const element = document.createElement("div");
+
+            if (randomChoice < 0.33) {
+                element.classList.add("heart");
+                element.textContent = "❤️";
+            } else if (randomChoice < 0.66) {
+                element.classList.add("snowflake");
+                element.textContent = "❄️";
+            } else {
+                element.classList.add("strawberry");
+                element.textContent = "🍓";
             }
 
             const x = Math.random() * window.innerWidth;
