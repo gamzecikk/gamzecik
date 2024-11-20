@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamzeyi Motive Et</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* Temel Stil */
+        body {
+            background-color: #000;
+            color: #ff007f;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Navigasyon Çubuğu (Boş İçerik) */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #000;
+            padding: 15px;
+            text-align: center;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-button {
+            color: white;
+            background-color: transparent;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 0 10px;
+        }
+
+        .nav-button:hover {
+            background-color: transparent;
+        }
+
+        /* Başlık (Pixel Font) */
+        h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.5em;
+            margin-top: 80px;
+            text-align: center;
+            color: #ff007f;
+        }
+
+        /* Kar Tanesi Efekti */
+        .snowflake {
+            position: absolute;
+            font-size: 1.5em;
+            animation: snow 10s linear infinite;
+            color: #fff;
+        }
+
+        @keyframes snow {
+            0% {
+                top: -5%;
+                opacity: 1;
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+
+        /* Motive Et Butonu */
+        .motive-button {
+            background-color: #ff007f;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.5em;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .motive-button:hover {
+            transform: scale(1.1);
+            background-color: #ff66b2;
+        }
+
+        /* Mesaj Kutusu */
+        .message-box {
+            display: none;
+            background-color: #ff007f;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+            width: 80%;
+            text-align: center;
+            font-size: 1.2em;
+            border: 2px solid #fff;
+        }
+
+        /* Kar Tanesi (Sürekli) */
+        .snowflakes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigasyon Çubuğu (Boş İçerik) -->
+    <div class="nav-bar">
+        <a href="index.html" class="nav-button">Ana Sayfa</a>
+        <a href="gamzeyi_motive_et.html" class="nav-button">Gamzeyi Motive Et</a>
+    </div>
+
+    <!-- Başlık -->
+    <h1>GAMZECİK</h1>
+
+    <!-- Motive Et Butonu -->
+    <button class="motive-button" onclick="showMessage()">Beni Motive Et</button>
+
+    <!-- Mesaj Kutusu -->
+    <div class="message-box" id="messageBox">
+        <p id="messageText"></p>
+    </div>
+
+    <!-- Kar Tanesi Efekti (Sürekli) -->
+    <div class="snowflakes" id="snowflakes"></div>
+
+    <script>
+        // Kar Tanesi Efekti (Sürekli)
+        function createSnowflake() {
+            const snowflake = document.createElement("div");
+            snowflake.classList.add("snowflake");
+            snowflake.textContent = "❄️";
+            snowflake.style.left = Math.random() * window.innerWidth + "px";
+            snowflake.style.animationDuration = Math.random() * 3 + 5 + "s"; // Kar tanelerinin hızı rastgele
+            document.getElementById("snowflakes").appendChild(snowflake);
+
+            // Snowflake'i 10 saniye sonra sil
+            setTimeout(() => {
+                snowflake.remove();
+            }, 10000);
+        }
+
+        // Sürekli kar tanesi yaratma
+        setInterval(createSnowflake, 100);
+
+        // Mesajlar
+        const messages = [
+            "Her şey senin elinde, her an senin kontrolünde!",
+            "Zorluklar, seni daha güçlü yapar. Durma, devam et!",
+            "Senin içinde gücün var, sadece ona inan!",
+            "Bugün her şeyin başlangıcı olabilir. Yola çıkmaya ne dersin?",
+            "Her adımın seni hedeflerine daha da yaklaştırır.",
+            "Güç, düşüşlerde değil, kalkışlarda gizlidir.",
+            "Bugün, eski seni geride bırakma günü!",
+            "Hedeflerine adım adım yaklaşmak senin elinde.",
+            "Zorluklar seni yavaşlatmasın, onlar seni güçlendirecek.",
+            "Yol uzun olabilir, ama her yolculuk küçük bir adımla başlar.",
+            "Her an, yeni bir başlangıçtır.",
+            "Güçlü olmak, düşmemek değil, her düştüğünde kalkabilmektir.",
+            "Senin içinde büyük bir potansiyel var, onu keşfet!",
+            "İleriye doğru her adım, seni hayallerine bir adım daha yaklaştırır.",
+            "Bugün, yarının zaferini şekillendiren gündür.",
+            "Kendi yolunu çiz, seni kimse durduramaz.",
+            "Başarı, cesaretin ve kararlılığının birleşimidir.",
+            "Her şey mümkün, yeter ki inancını kaybetme!",
+            "Senin için en iyisi, her zaman önünde!",
+            "Her zorluk, seni daha iyi bir versiyon yapma fırsatıdır."
+        ];
+
+        let currentMessage = 0;
+
+        // Mesaj Kutusu Görüntüleme ve Değiştirme
+        function showMessage() {
+            const messageBox = document.getElementById("messageBox");
+            const messageText = document.getElementById("messageText");
+
+            messageBox.style.display = "block";
+            messageText.textContent = messages[currentMessage];
+
+            // Sonraki mesaja geç
+            currentMessage = (currentMessage + 1) % messages.length;
+        }
+    </script>
+
+</body>
+  </html>
